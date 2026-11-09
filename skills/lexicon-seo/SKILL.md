@@ -53,14 +53,14 @@ Rate limits (per key): Starter 30/min, Professional 60/min, Business 120/min.
 ## Typical workflow
 
 1. **`list_sites`** — see monitored and previously audited hosts for this account.
-2. **`start_audit`** with { "url": "https://example.com" }.
+2. **`start_audit`** with `{ "url": "https://example.com" }`.
    - Uses one audit from the monthly allowance.
    - If the tool quotes credits, show the quote and only call again with `"confirm": true` after the user agrees.
-3. Poll **`get_audit_status`** with { "id": "<audit-id>" } until status is no longer running.
-4. **`get_report`** with { "id": "<audit-id>", "format": "markdown" } (or `"json"`).
-5. **`list_issues`** with { "report_id": "<audit-id>" } — optional `severity`: `critical` / `warning` / `info` (or `P0` / `P1` / `P2`).
-6. **`get_fix`** with { "issue": "<code>", "report_id": "<audit-id>" } for steps.
-7. After the user ships a fix on one URL, **`verify_fix`** with { "url": "...", "issue_code": "..." } (no audit consumed). Refuse site-wide codes; tell the user to run `start_audit`.
+3. Poll **`get_audit_status`** with `{ "id": "<audit-id>" }` until status is no longer running.
+4. **`get_report`** with `{ "id": "<audit-id>", "format": "markdown" }` (or `"json"`).
+5. **`list_issues`** with `{ "report_id": "<audit-id>" }` — optional `severity`: `critical` / `warning` / `info` (or `P0` / `P1` / `P2`).
+6. **`get_fix`** with `{ "issue": "<code>", "report_id": "<audit-id>" }` for steps.
+7. After the user ships a fix on one URL, **`verify_fix`** with `{ "url": "...", "issue_code": "..." }` (no audit consumed). Refuse site-wide codes; tell the user to run `start_audit`.
 8. Optional: **`get_citations`** / **`extra_citation`** (extra cites quote price first; confirm to spend).
 9. Optional: **`refresh_page`** then **`get_refresh`** for drafts (allowance / confirm; 30-day reuse per page; Business may include one section draft).
 
