@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "Hosted MCP for technical SEO and AI-visibility audits. Start audits, read reports, list issues, verify fixes, check citations, and draft content refreshes. Words matter.",
   "author": "Lexicon SEO",
+  "authorUrl": "https://github.com/NK2-arch",
   "homepage": "https://lexiconseo.com",
+  "category": "developer",
   "cloudEndpoint": "https://lexiconseo.com/mcp",
   "tags": [
     "seo",

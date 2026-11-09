@@ -138,7 +138,7 @@ This repo includes an Agent Skill at [`skills/lexicon-seo/SKILL.md`](skills/lexi
 Install via skills.sh (after this repository is public):
 
 ```bash
-npx skills add <owner>/lexicon-mcp
+npx skills add NK2-arch/lexicon-mcp
 ```
 
 ## Manifests in this repo
