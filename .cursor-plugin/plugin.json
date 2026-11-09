@@ -1,0 +1,32 @@
+{
+  "name": "lexicon-seo",
+  "version": "1.0.0",
+  "description": "Connect Cursor to Lexicon SEO's hosted MCP server for technical SEO and AI-visibility audits.",
+  "author": {
+    "name": "Lexicon SEO"
+  },
+  "homepage": "https://lexiconseo.com",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "mcp",
+    "audit",
+    "ai-visibility",
+    "lexicon"
+  ],
+  "skills": "skills/",
+  "mcpServers": "cursor-mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "LEXICON_API_KEY": {
+        "type": "string",
+        "title": "Lexicon API key",
+        "description": "Bearer API key from https://lexiconseo.com/app/settings/ (paid plans). Lexicon stores a hash of the key, not the key."
+      }
+    },
+    "required": [
+      "LEXICON_API_KEY"
+    ]
+  }
+}
