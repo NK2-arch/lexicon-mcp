@@ -1,7 +1,6 @@
 ---
 name: lexicon-seo
 description: Run technical SEO and AI-visibility audits through Lexicon SEO's hosted MCP server (start audits, read reports, list issues, verify page fixes, citations, content refresh drafts). Use when the user asks to audit a site, check indexing or on-page SEO issues, pull Lexicon fix steps, recheck a page, review AI citation readiness, or draft title/meta/H1 refreshes via Lexicon.
-license: MIT
 metadata:
   author: Lexicon SEO
   version: "1.0.0"
