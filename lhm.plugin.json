@@ -1,0 +1,245 @@
+{
+  "identifier": "lexicon-seo",
+  "name": "Lexicon SEO",
+  "version": "1.0.0",
+  "description": "Hosted MCP for technical SEO and AI-visibility audits. Start audits, read reports, list issues, verify fixes, check citations, and draft content refreshes. Words matter.",
+  "author": "Lexicon SEO",
+  "homepage": "https://lexiconseo.com",
+  "cloudEndpoint": "https://lexiconseo.com/mcp",
+  "tags": [
+    "seo",
+    "audit",
+    "ai-visibility",
+    "mcp",
+    "indexing"
+  ],
+  "tools": [
+    {
+      "name": "list_sites",
+      "description": "List this account's saved monitoring sites and the sites it has audited.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "start_audit",
+      "description": "Start a read-only audit of one public site. Uses one audit from this month's allowance and the same URL checks, page cap, and subscription checks as the dashboard. After the allowance, send confirm true to spend the quoted credit amount.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Public website URL. The audit runs on the site origin."
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "Required only after the monthly allowance. True spends the quoted credits."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "get_audit_status",
+      "description": "Status, pages crawled so far, and score for an audit on this account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Audit id from start_audit."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_report",
+      "description": "The stored audit report as Markdown (the same export as the dashboard) or JSON.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Audit id."
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "json"
+            ],
+            "description": "markdown or json."
+          }
+        },
+        "required": [
+          "id",
+          "format"
+        ]
+      }
+    },
+    {
+      "name": "list_issues",
+      "description": "Issues on a stored report, grouped by code. Optional severity is critical, warning, or info. P0, P1, and P2 select those same three levels.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Audit id."
+          },
+          "severity": {
+            "type": "string",
+            "description": "Optional: critical, warning, info, P0, P1, or P2."
+          }
+        },
+        "required": [
+          "report_id"
+        ]
+      }
+    },
+    {
+      "name": "get_fix",
+      "description": "Developer fix steps for one issue code, using the same guidance text as the Markdown export.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "string",
+            "description": "Issue code, such as title_missing."
+          },
+          "report_id": {
+            "type": "string",
+            "description": "Optional audit id. When set, affected URLs come from that report."
+          }
+        },
+        "required": [
+          "issue"
+        ]
+      }
+    },
+    {
+      "name": "verify_fix",
+      "description": "Fetch one public page and report whether that issue code is still present. This does not use an audit. Site-wide codes such as robots.txt are refused.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Public page URL."
+          },
+          "issue_code": {
+            "type": "string",
+            "description": "Issue code to recheck on that page."
+          }
+        },
+        "required": [
+          "url",
+          "issue_code"
+        ]
+      }
+    },
+    {
+      "name": "get_monitoring",
+      "description": "Latest stored diff and regressions for one saved monitoring site.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "site": {
+            "type": "string",
+            "description": "Id of a monitoring site saved on this account. A host or URL for one of those sites also works."
+          }
+        },
+        "required": [
+          "site"
+        ]
+      }
+    },
+    {
+      "name": "get_citations",
+      "description": "Citation questions and answer-readiness checks stored on a report. This does not run a new search.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Audit id."
+          }
+        },
+        "required": [
+          "report_id"
+        ]
+      }
+    },
+    {
+      "name": "extra_citation",
+      "description": "Ask one citation question past the plan allowance. Returns the price first. Send confirm true to spend credits. Does not publish anything.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Audit id."
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "True spends the quoted credits. Omit it to see the price."
+          }
+        },
+        "required": [
+          "report_id"
+        ]
+      }
+    },
+    {
+      "name": "refresh_page",
+      "description": "Draft a title, meta description, and H1 for one page from a finished audit on this account. Business also drafts one added section. Uses one content refresh from this month's allowance. After the allowance, send confirm true to spend the quoted credits. Does not publish the page. The same page is not drafted again for 30 days.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Audit id."
+          },
+          "url": {
+            "type": "string",
+            "description": "A page URL from that audit."
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "Required only after the monthly allowance. True spends the quoted credits."
+          }
+        },
+        "required": [
+          "report_id",
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "get_refresh",
+      "description": "Read a stored content refresh draft. Does not call the model or use the monthly allowance. Omit url to list drafts stored on the report.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "description": "Audit id."
+          },
+          "url": {
+            "type": "string",
+            "description": "Optional page URL."
+          }
+        },
+        "required": [
+          "report_id"
+        ]
+      }
+    }
+  ]
+}

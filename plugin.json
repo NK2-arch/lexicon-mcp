@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lexicon-seo",
+  "version": "1.0.0",
+  "description": "Hosted Lexicon SEO MCP server for technical SEO and AI-visibility audits. Words matter.",
+  "keywords": ["seo", "mcp", "audit", "ai-visibility", "indexing", "lexicon"],
+  "homepage": "https://lexiconseo.com",
+  "license": "MIT",
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": {
+        "lexicon": {
+          "trust": "untrusted"
+        }
+      }
+    }
+  }
+}

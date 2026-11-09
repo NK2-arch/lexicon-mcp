@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "lexicon": {
+      "url": "https://lexiconseo.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${LEXICON_API_KEY}"
+      }
+    }
+  }
+}
